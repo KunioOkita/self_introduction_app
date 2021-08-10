@@ -1,0 +1,48 @@
+name: Verify
+# This workflow is triggered on pushes to the repository.
+on: [push]
+
+jobs:
+  build:
+    # Job name is Greeting
+    name: verify
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: QB7StzzZE78i
+          POSTGRES_DB: test
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    container:
+      image: ruby:2.6
+      env:
+        RAILS_ENV: test
+        POSTGRES_HOST: localhost
+        RAILS_DATABASE_USER: postgres
+        RAILS_DATABASE_PASSWORD: QB7StzzZE78i
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: bundler set up
+        run: |
+          gem install bundler
+          bundle install
+      - name: install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: db migrate
+        run: |
+          bundle exec rails db:migrate
+
+      - name: verify
+        run: |
+          bundle exec rubocop
+          bundle exec rspec
