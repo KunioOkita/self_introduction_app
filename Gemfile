@@ -61,3 +61,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'hamlit-rails', '~> 0.2.3'
+# gem 'html2haml', '~> 2.2.0'
+# OAuth
+gem 'omniauth-oauth2', '~> 1.7.1'
+# OmniAuth CSRF protection
+gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
+# REST calls to Microsoft Graph
+gem 'httparty', '~> 0.18.1'
+# Session storage in database
+gem 'activerecord-session_store', '~> 2.0.0'
