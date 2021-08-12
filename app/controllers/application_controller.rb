@@ -10,8 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   def save_in_session(auth_hash)
-    puts "auth_hash => #{auth_hash}"
-
     # Save the token info
     session[:graph_token_hash] = auth_hash[:credentials]
     # Save the user's display name
