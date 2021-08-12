@@ -3,7 +3,8 @@ class AuthController < ApplicationController
 
   def callback
     data = request.env['omniauth.auth']
-    save_in_session data
+    save_in_session(data)
+    User.create_from_auth_hash!(data)
 
     redirect_to root_url
   end
