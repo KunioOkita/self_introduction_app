@@ -1,0 +1,2 @@
+class UserSelfIntroductionsController < ApplicationController
+end
