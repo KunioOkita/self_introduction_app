@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :user_self_introductions
+  resources :user_self_introductions, only: %i[new create show edit]
+
   root 'top#index'
   get 'auth/signout'
   # Add route for OmniAuth callback

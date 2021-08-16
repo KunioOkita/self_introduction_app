@@ -1,9 +1,8 @@
 .jumbotron
   %h1 Heartsoft Self Introduction
   %p.lead HSメンバの自己紹介を検索できるサイトです。
-  - if @user_name
+  - if @user
     %h4
-      Welcome #{@user_name}!
+      Welcome #{@user.name}!
   - else
     = link_to "Click here to sign in", "/auth/microsoft_graph_auth", method: :post, class: "btn btn-primary btn-large"
-
