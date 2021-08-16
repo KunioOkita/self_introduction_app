@@ -1,10 +1,11 @@
 class AuthController < ApplicationController
-  skip_before_action :set_user
+  skip_before_action :authenticate
 
   def callback
     data = request.env['omniauth.auth']
-    save_in_session(data)
-    User.create_from_auth_hash!(data)
+    user = User.create_from_auth_hash!(data)
+    session[:graph_token_hash] = data[:credentials]
+    session[:user_id] = user.id
 
     redirect_to root_url
   end

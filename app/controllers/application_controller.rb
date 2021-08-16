@@ -1,27 +1,10 @@
+# coding: utf-8
 require 'microsoft_graph_auth'
 require 'oauth2'
 
 class ApplicationController < ActionController::Base
-  before_action :set_user
-
-  def set_user
-    @user_name = user_name
-    @user_email = user_email
-  end
-
-  def save_in_session(auth_hash)
-    # Save the token info
-    session[:graph_token_hash] = auth_hash[:credentials]
-    # Save the user's display name
-    session[:user_name] = auth_hash.dig(:extra, :raw_info, :displayName)
-    # Save the user's email address
-    # Use the mail field first. If that's empty, fall back on
-    # userPrincipalName
-    session[:user_email] = auth_hash.dig(:extra, :raw_info, :mail) ||
-                           auth_hash.dig(:extra, :raw_info, :userPrincipalName)
-    # Save the user's time zone
-    session[:user_timezone] = auth_hash.dig(:extra, :raw_info, :mailboxSettings, :timeZone)
-  end
+  before_action :authenticate
+  helper_method :logged_in?, :current_user
 
   def refresh_tokens(token_hash)
     oauth_strategy = OmniAuth::Strategies::MicrosoftGraphAuth.new(
@@ -43,18 +26,6 @@ class ApplicationController < ActionController::Base
     session[:graph_token_hash] = new_tokens
   end
 
-  def user_name
-    session[:user_name]
-  end
-
-  def user_email
-    session[:user_email]
-  end
-
-  def user_timezone
-    session[:user_timezone]
-  end
-
   def access_token
     token_hash = session[:graph_token_hash]
 
@@ -68,5 +39,21 @@ class ApplicationController < ActionController::Base
     else
       token_hash[:token]
     end
+  end
+
+  private
+
+  def logged_in?
+    !!session[:user_id]
+  end
+
+  def current_user
+    return unless session[:user_id]
+    @current_user ||= User.find(session[:user_id])
+  end
+
+  def authenticate
+    return if logged_in?
+    redirect_to root_path, alert: "ログインしてください"
   end
 end

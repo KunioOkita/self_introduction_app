@@ -8,6 +8,7 @@
     %link{href: "favicon.png", rel: "shortcut icon"}/
     %link{href: "https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css", rel: "stylesheet"}/
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     %nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
       .container
@@ -17,7 +18,7 @@
         #navbarCollapse.collapse.navbar-collapse
           %ul.navbar-nav.mr-auto
           %ul.navbar-nav.justify-content-end
-            - if @user_name
+            - if logged_in?
               %li.nav-item.dropdown
                 %a.nav-link.avatar-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
                   - if @user_avatar
@@ -26,8 +27,13 @@
                   - else
                     = image_tag "no-profile-photo.png", class: "rounded-circle align-self-center mr-2 profile-photo"
                 .dropdown-menu.dropdown-menu-right
-                  %h5.dropdown-item-text.mb-0= @user_name
-                  %p.dropdown-item-text.text-muted.mb-0= @user_email
+                  %h5.dropdown-item-text.mb-0= current_user.name
+                  %p.dropdown-item-text.text-muted.mb-0= current_user.mail
+                  - unless current_user.user_self_introduction.present?
+                    = link_to "自己紹介を作る", new_user_self_introduction_path, class: "dropdown-item", method: :get
+                  -else
+                    = link_to(current_user.user_self_introduction, class: "dropdown-item") do
+                      自己紹介を確認する
                   .dropdown-divider
                   = link_to "Sign Out", {:controller => :auth, :action => :signout}, :class => "dropdown-item"
             - else
@@ -42,4 +48,3 @@
               %pre.alert-pre.border.bg-light.p-2
                 %code= error[:debug]
       = yield
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
