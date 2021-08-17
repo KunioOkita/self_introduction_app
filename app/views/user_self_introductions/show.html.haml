@@ -6,6 +6,9 @@
       %h5.card-header 自己紹介画像
       - if @user_self_introduction.self_image.attached?
         = image_tag @user_self_introduction.self_image, class: "d-block mb-3"
+      - else
+        .card-body
+          %p.card-text= "画像を設定してください"
     .card.mb-2
       %h5.card-header 出身地
       .card-body
