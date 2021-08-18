@@ -113,9 +113,9 @@ entity "project_skills" as project_skills {
 }
 
 users ||--right--o| user_self_introductions
-users ||--o{ user_divisions
-users ||--o{ user_skills
-users ||--o{ user_careers
+user_self_introductions ||--o{ user_divisions
+user_self_introductions ||--o{ user_skills
+user_self_introductions ||--o{ user_careers
 user_divisions }o--o{ divisions
 departments ||--o{ divisions
 skills }o--o{ skill_categories
