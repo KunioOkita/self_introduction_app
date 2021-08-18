@@ -12,7 +12,10 @@
   %body
     %nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
       .container
-        = link_to "Heartsoft Self Introduction", root_path, class: "navbar-brand"
+        = link_to "Self Introduction", root_path, class: "navbar-brand"
+        %button.navbar-toggler{"aria-controls" => "navbarCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarCollapse", "data-toggle" => "collapse", type: "button"}
+          %span.navbar-toggler-icon
+        = link_to "マスタデータ管理", master_data_index_path, class: "navbar-brand"
         %button.navbar-toggler{"aria-controls" => "navbarCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarCollapse", "data-toggle" => "collapse", type: "button"}
           %span.navbar-toggler-icon
         #navbarCollapse.collapse.navbar-collapse
