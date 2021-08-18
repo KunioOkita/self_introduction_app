@@ -1,0 +1,16 @@
+= form_for @division, html:{class: "form-group"} do |f|
+  - if @division.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@division.errors.count, "error")} prohibited this division from being saved:"
+      %ul
+        - @division.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name, {class: "form-control"}
+  .field
+    = f.label :department
+    = f.collection_select :department_id, Department.all, :id, :name, {prompt: true}, {class: "form-control"}
+  .actions
+    = f.submit 'Save', {class: "btn btn-primary"}

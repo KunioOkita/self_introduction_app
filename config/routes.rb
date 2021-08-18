@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :divisions
   resources :departments
   resources :user_self_introductions, only: %i[new create show edit update]
 
