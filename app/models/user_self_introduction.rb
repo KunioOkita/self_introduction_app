@@ -1,5 +1,7 @@
 class UserSelfIntroduction < ApplicationRecord
   has_one_attached :self_image
+  has_one :user_division
+  has_one :division, through: :user_division
   belongs_to :user
 
   attr_accessor :remove_self_image

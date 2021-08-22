@@ -10,6 +10,10 @@
         .card-body
           %p.card-text= "画像を設定してください"
     .card.mb-2
+      %h5.card-header 所属
+      .card-body
+        %p.card-text= @user_self_introduction.user_division.division.name
+    .card.mb-2
       %h5.card-header 出身地
       .card-body
         %p.card-text= @user_self_introduction.birth_place

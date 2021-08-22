@@ -34,7 +34,7 @@ entity "user_self_introductions" as user_self_introductions {
 entity "user_divisions" as user_divisions {
     + id   [PK]
     --
-    # user_id [FK]
+    # user_self_introduction_id [FK]
     # division_id [FK]
     created_at
     updated_at
@@ -77,7 +77,7 @@ entity "skill_categories" as skill_categories {
 entity "user_skills" as user_skills {
     + id   [PK]
     --
-    # user_id [FK]
+    # user_self_introduction_id [FK]
     # skill_id [FK]
     created_at
     updated_at
@@ -86,7 +86,7 @@ entity "user_skills" as user_skills {
 entity "user_careers" as user_careers {
     + id   [PK]
     --
-    # user_id [FK]
+    # user_self_introduction_id [FK]
     # project_id [FK]
     start_at
     end_at

@@ -1,24 +1,36 @@
 %h1.mt-2 自己紹介編集
 
-= form_with(model: @user_self_introduction, class: "form-horizontail") do |f|
-  #erros
-  .form-group
-    = f.label :self_image
-    - if @user_self_introduction.self_image.attached?
-      = image_tag @user_self_introduction.self_image, class: "d-block mb-3", width: 200
-    = f.file_field :self_image, class: "form-control-file"
-    - if @user_self_introduction.self_image.attached?
-      .checkbox
-        %label
-          = f.check_box :remove_self_image
-          画像を削除する
-  .form-group
-    = f.label :birth_place
-    = f.text_field :birth_place, class: "form-control"
-  .form-group
-    = f.label :hobby
-    = f.text_field :hobby, class: "form-control"
-  .form-group
-    = f.label :introduction
-    = f.text_field :introduction, class: "form-control"
-  = f.submit class: "btn btn-primary"
+.card.mb-2
+  %h5.card-header メイン編集
+  .card-body
+    = form_with(model: @user_self_introduction, class: "form-horizontail") do |f|
+      #erros
+      .form-group
+        = f.label :self_image
+        - if @user_self_introduction.self_image.attached?
+          = image_tag @user_self_introduction.self_image, class: "d-block mb-3", width: 200
+        = f.file_field :self_image, class: "form-control-file"
+        - if @user_self_introduction.self_image.attached?
+          .checkbox
+            %label
+              = f.check_box :remove_self_image
+              画像を削除する
+      .form-group
+        = f.label :birth_place
+        = f.text_field :birth_place, class: "form-control"
+      .form-group
+        = f.label :hobby
+        = f.text_field :hobby, class: "form-control"
+      .form-group
+        = f.label :introduction
+        = f.text_field :introduction, class: "form-control"
+      = f.submit class: "btn btn-primary"
+
+.card.mb-2
+  %h5.card-header 所属編集
+  .card-body
+    = form_with(url: user_division_path, method: :put, class: "form-horizontail") do |f|
+      .form-group
+        = f.label :division
+        = f.collection_select :division_id, Division.all, :id, :name, {prompt: true, selected: @user_self_introduction.user_division.division_id}, {class: "form-control"}
+      = f.submit class: "btn btn-primary"
