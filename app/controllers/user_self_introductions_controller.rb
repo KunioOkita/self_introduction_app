@@ -2,7 +2,6 @@
 class UserSelfIntroductionsController < ApplicationController
   def show
     @user_self_introduction = UserSelfIntroduction.find(params[:id])
-    pp @user_self_introduction.user_division
   end
 
   def new
