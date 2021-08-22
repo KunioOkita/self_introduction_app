@@ -12,7 +12,8 @@
     .card.mb-2
       %h5.card-header 所属
       .card-body
-        %p.card-text= @user_self_introduction.user_division.division.name
+        - if @user_self_introduction.user_division
+          %p.card-text= @user_self_introduction.user_division.division.name
     .card.mb-2
       %h5.card-header 出身地
       .card-body
