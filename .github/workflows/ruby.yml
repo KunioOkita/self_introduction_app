@@ -6,6 +6,7 @@ jobs:
   build:
     env:
       POSTGRES_DB: self_introduction_app_test
+      RAILS_ENV:: test
     # Job name is Greeting
     name: verify
     # This job runs on Linux
