@@ -18,30 +18,26 @@ jobs:
           POSTGRES_PASSWORD: QB7StzzZE78i
           POSTGRES_DB: test
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-    container:
-      image: ruby:2.6.6
-      env:
-        RAILS_ENV: test
-        POSTGRES_HOST: localhost
-        RAILS_DATABASE_USER: postgres
-        RAILS_DATABASE_PASSWORD: QB7StzzZE78i
 
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: bundler set up
-        run: |
-          gem install bundler
-          bundle install
       - name: install node
         uses: actions/setup-node@v1
         with:
           node-version: '12'
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+      - name: bundler set up
+        run: |
+          gem install bundler
+          bundle install
 
       - name: db migrate
         run: |
           bundle exec rails db:migrate
-
       - name: verify
         run: |
           bundle exec rubocop
