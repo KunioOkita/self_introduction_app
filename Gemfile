@@ -44,8 +44,8 @@ group :development do
   gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', require: false
+  gem 'rubocop-performance', require: true
+  gem 'rubocop-rails', require: true
   gem 'rubocop-rspec'
 end
 
