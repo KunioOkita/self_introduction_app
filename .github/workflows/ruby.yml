@@ -16,10 +16,13 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: QB7StzzZE78i
-          POSTGRES_DB: test
+          POSTGRES_DB: self_introduction_app_test
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
+      - name: Set env
+        env:
+          POSTGRES_DB: self_introduction_app_test
       - name: checkout
         uses: actions/checkout@v2
       - name: install node
