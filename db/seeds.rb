@@ -50,5 +50,5 @@ mail_suffix = "@heartsoft.co.jp"
   name = format("user%03<number>d", number: n)
   mail = "#{name}#{mail_suffix}"
   user = User.create(provider: provider, uid: uid, name: name, mail: mail)
-  user_self_intoroduction = UserSelfIntroduction.create(user_id: user.id, birth_place: "出身値", hobby: "趣味", introduction: "ひとこと")
+  UserSelfIntroduction.create(user_id: user.id, birth_place: "出身値", hobby: "趣味", introduction: "ひとこと")
 end
