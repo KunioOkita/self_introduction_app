@@ -1,27 +1,27 @@
-require 'httparty'
+require "httparty"
 
 # Graph API helper methods
 module GraphHelper
-  GRAPH_HOST = 'https://graph.microsoft.com'.freeze
+  GRAPH_HOST = "https://graph.microsoft.com".freeze
 
   def make_api_call(method, endpoint, token, headers = nil, params = nil, payload = nil)
     headers ||= {}
     headers[:Authorization] = "Bearer #{token}"
-    headers[:Accept] = 'application/json'
+    headers[:Accept] = "application/json"
 
     params ||= {}
 
     case method.upcase
-    when 'GET'
+    when "GET"
       HTTParty.get "#{GRAPH_HOST}#{endpoint}",
-                   :headers => headers,
-                   :query => params
-    when 'POST'
-      headers['Content-Type'] = 'application/json'
+                   headers: headers,
+                   query: params
+    when "POST"
+      headers["Content-Type"] = "application/json"
       HTTParty.post "#{GRAPH_HOST}#{endpoint}",
-                    :headers => headers,
-                    :query => params,
-                    :body => payload ? payload.to_json : nil
+                    headers: headers,
+                    query: params,
+                    body: payload ? payload.to_json : nil
     else
       raise "HTTP method #{method.upcase} not implemented"
     end

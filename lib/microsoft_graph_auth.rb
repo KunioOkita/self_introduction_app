@@ -1,4 +1,4 @@
-require 'omniauth-oauth2'
+require "omniauth-oauth2"
 
 module OmniAuth
   module Strategies
@@ -7,35 +7,35 @@ module OmniAuth
     class MicrosoftGraphAuth < OmniAuth::Strategies::OAuth2
       option :name, :microsoft_graph_auth
 
-      DEFAULT_SCOPE = 'openid email profile User.Read'.freeze
+      DEFAULT_SCOPE = "openid email profile User.Read".freeze
 
       # Configure the Microsoft identity platform endpoints
       option :client_options,
-             :site => 'https://login.microsoftonline.com',
-             :authorize_url => '/common/oauth2/v2.0/authorize',
-             :token_url => '/common/oauth2/v2.0/token'
+             site: "https://login.microsoftonline.com",
+             authorize_url: "/common/oauth2/v2.0/authorize",
+             token_url: "/common/oauth2/v2.0/token"
 
       # Send the scope parameter during authorize
       option :authorize_options, [:scope]
 
       # Unique ID for the user is the id field
-      uid { raw_info['id'] }
+      uid { raw_info["id"] }
 
       # Get additional information after token is retrieved
       extra do
         {
-          'raw_info' => raw_info
+          "raw_info" => raw_info
         }
       end
 
       def raw_info
         # Get user profile information from the /me endpoint
-        @raw_info ||= access_token.get('https://graph.microsoft.com/v1.0/me?$select=displayName,mail,mailboxSettings,userPrincipalName').parsed
+        @raw_info ||= access_token.get("https://graph.microsoft.com/v1.0/me?$select=displayName,mail,mailboxSettings,userPrincipalName").parsed
       end
 
       def authorize_params
         super.tap do |params|
-          params[:scope] = request.params['scope'] if request.params['scope']
+          params[:scope] = request.params["scope"] if request.params["scope"]
           params[:scope] ||= DEFAULT_SCOPE
         end
       end

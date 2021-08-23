@@ -1,6 +1,7 @@
 # coding: utf-8
-require 'microsoft_graph_auth'
-require 'oauth2'
+
+require "microsoft_graph_auth"
+require "oauth2"
 
 class ApplicationController < ActionController::Base
   before_action :authenticate
@@ -8,12 +9,12 @@ class ApplicationController < ActionController::Base
 
   def refresh_tokens(token_hash)
     oauth_strategy = OmniAuth::Strategies::MicrosoftGraphAuth.new(
-      nil, ENV['AZURE_APP_ID'], ENV['AZURE_APP_SECRET']
+      nil, ENV["AZURE_APP_ID"], ENV["AZURE_APP_SECRET"]
     )
 
     token = OAuth2::AccessToken.new(
       oauth_strategy.client, token_hash[:token],
-      :refresh_token => token_hash[:refresh_token]
+      refresh_token: token_hash[:refresh_token]
     )
 
     # Refresh the tokens
@@ -42,18 +43,17 @@ class ApplicationController < ActionController::Base
   end
 
   private
+    def logged_in?
+      !!session[:user_id]
+    end
 
-  def logged_in?
-    !!session[:user_id]
-  end
+    def current_user
+      return unless session[:user_id]
+      @current_user ||= User.find(session[:user_id])
+    end
 
-  def current_user
-    return unless session[:user_id]
-    @current_user ||= User.find(session[:user_id])
-  end
-
-  def authenticate
-    return if logged_in?
-    redirect_to root_path, alert: "ログインしてください"
-  end
+    def authenticate
+      return if logged_in?
+      redirect_to root_path, alert: "ログインしてください"
+    end
 end

@@ -15,8 +15,7 @@ class UserSelfIntroduction < ApplicationRecord
   end
 
   private
-
-  def remove_self_image_if_user_accept
-    self.self_image = nil if ActiveRecord::Type::Boolean.new.cast(remove_self_image)
-  end
+    def remove_self_image_if_user_accept
+      self.self_image = nil if ActiveRecord::Type::Boolean.new.cast(remove_self_image)
+    end
 end

@@ -8,9 +8,9 @@ Rails.application.routes.draw do
 
   resources :user_divisions, only: %i[update destory]
 
-  root 'top#index'
-  get 'auth/signout'
-  get 'master_data/index'
+  root "top#index"
+  get "auth/signout"
+  get "master_data/index"
   # Add route for OmniAuth callback
-  match '/auth/:provider/callback', :to => 'auth#callback', :via => [:get, :post]
+  match "/auth/:provider/callback", to: "auth#callback", via: [:get, :post]
 end
