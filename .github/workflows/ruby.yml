@@ -21,8 +21,8 @@ jobs:
 
     steps:
       - name: Set env
-        env:
-          POSTGRES_DB: self_introduction_app_test
+        run: |
+          echo "RAILS_ENV=test" >> $GITHUB_ENV
       - name: checkout
         uses: actions/checkout@v2
       - name: install node
@@ -41,7 +41,9 @@ jobs:
       - name: db migrate
         run: |
           bundle exec rails db:migrate
-      - name: verify
+      - name: exec rubocop
         run: |
           bundle exec rubocop
+      - name: exec test
+        run: |
           bundle exec rspec

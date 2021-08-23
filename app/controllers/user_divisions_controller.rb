@@ -1,4 +1,5 @@
 # coding: utf-8
+
 class UserDivisionsController < ApplicationController
   def update
     puts "user_division_params => #{user_division_params}"

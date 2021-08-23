@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "departments/edit", type: :view do
   before(:each) do
@@ -11,7 +11,6 @@ RSpec.describe "departments/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", department_path(@department), "post" do
-
       assert_select "input[name=?]", "department[name]"
     end
   end

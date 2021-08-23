@@ -1,4 +1,5 @@
 # coding: utf-8
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -49,5 +50,5 @@ mail_suffix = "@heartsoft.co.jp"
   name = format("user%03<number>d", number: n)
   mail = "#{name}#{mail_suffix}"
   user = User.create(provider: provider, uid: uid, name: name, mail: mail)
-  user_self_intoroduction = UserSelfIntroduction.create(user_id: user.id, birth_place: "出身値", hobby: "趣味", introduction: "ひとこと")
+  UserSelfIntroduction.create(user_id: user.id, birth_place: "出身値", hobby: "趣味", introduction: "ひとこと")
 end
