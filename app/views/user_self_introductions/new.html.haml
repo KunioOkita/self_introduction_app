@@ -6,9 +6,6 @@
     = f.label :self_image
     = f.file_field :self_image, class: "form-control-file"
   .form-group
-    = f.label :division
-    = f.collection_select :division_id, Division.all, :id, :name, {prompt: true}, {class: "form-control"}
-  .form-group
     = f.label :birth_place
     = f.text_field :birth_place, class: "form-control"
   .form-group
