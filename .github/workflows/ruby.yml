@@ -4,6 +4,8 @@ on: [push]
 
 jobs:
   build:
+    env:
+      POSTGRES_DB: self_introduction_app_test
     # Job name is Greeting
     name: verify
     # This job runs on Linux
@@ -20,9 +22,6 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-      - name: Set env
-        env:
-          POSTGRES_DB: self_introduction_app_test
       - name: checkout
         uses: actions/checkout@v2
       - name: install node
