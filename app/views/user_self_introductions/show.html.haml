@@ -6,12 +6,12 @@
 
 .card.mb-3
   .row.no-gutter
-    .col-md-6
+    .col-md-7
       - if @user_self_introduction.self_image.attached?
         = image_tag @user_self_introduction.self_image, width: "100%"
       - else
         %p.card-text= "画像を設定してください"
-    .col-md-6
+    .col-md-5
       .card-body
         %h5 所属
         - if @user_self_introduction.user_division
@@ -23,7 +23,8 @@
         %h5 趣味
         %p.card-text= @user_self_introduction.hobby
         %h5 ひとこと
-        %p.card-text= @user_self_introduction.introduction
+        %p.card-text
+          = safe_join(@user_self_introduction.introduction.split("\n"), tag(:br))
 
 .card.mb-3
   .card-header プロジェクト経歴
