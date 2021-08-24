@@ -33,6 +33,6 @@ class UserSelfIntroductionsController < ApplicationController
     def user_self_introduction_params
       params
         .require(:user_self_introduction)
-        .permit(:birth_place, :hobby, :introduction, :self_image, :remove_self_image)
+        .permit(:birth_place, :hobby, :introduction, :self_image, :remove_self_image, :birth_month, :birth_day)
     end
 end

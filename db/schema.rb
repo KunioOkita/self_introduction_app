@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_18_235706) do
+ActiveRecord::Schema.define(version: 2021_08_24_113709) do
+
+  # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -101,6 +103,8 @@ ActiveRecord::Schema.define(version: 2021_08_18_235706) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "birth_month"
+    t.integer "birth_day"
     t.index ["user_id"], name: "index_user_self_introductions_on_user_id", unique: true
   end
 
