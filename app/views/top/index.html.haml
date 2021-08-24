@@ -1,6 +1,16 @@
-%h2.mt-3.mb-3 メンバを探して見ましょう
-
-%ul.list-group
+.row
   - @user_self_introductions.each do |user_self_introduction|
-    = link_to(user_self_introduction, class: "list-group-item list-group-item-action") do
-      %h5.list-group-item-heading= user_self_introduction.user.name
+    .col-sm-4
+      .card.mb-4
+        - if user_self_introduction.self_image.attached?
+          = image_tag user_self_introduction.self_image, class: "d-block"
+        - else
+          %svg.bd-placeholder-img.card-img-top{"aria-label" => "Placeholder: Image cap", :focusable => "false", :height => "180", :preserveaspectratio => "xMidYMid slice", :role => "img", :width => "100%", :xmlns => "http://www.w3.org/2000/svg"}
+            %title Placeholder
+            %rect{:fill => "#868e96", :height => "100%", :width => "100%"}
+            %text{:dy => ".3em", :fill => "#dee2e6", :x => "40%", :y => "50%"} No Image
+        .card-body
+          .card-title
+            = link_to(user_self_introduction) do
+              = user_self_introduction.user.name
+          .card-text= user_self_introduction.introduction

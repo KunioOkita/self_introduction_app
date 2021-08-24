@@ -1,7 +1,10 @@
-%h1.mt-2 自己紹介
+%h2.mb-3= @user_self_introduction.user.name
 
+- if @user_self_introduction.created_by?(current_user)
+  .mb-3
+    = link_to "編集する", edit_user_self_introduction_path(@user_self_introduction), class: "btn btn-info btn-block"
 .row
-  .col-10
+  .col-12
     .card.mb-2
       %h5.card-header 自己紹介画像
       - if @user_self_introduction.self_image.attached?
@@ -26,6 +29,3 @@
       %h5.card-header 自己紹介
       .card-body
         %p.card-text= @user_self_introduction.introduction
-  .col-2
-    - if @user_self_introduction.created_by?(current_user)
-      = link_to "編集する", edit_user_self_introduction_path(@user_self_introduction), class: "btn btn-info btn-block"
