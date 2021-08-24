@@ -42,7 +42,7 @@
             - else
               %li.nav-item
                 = link_to "Sign In", "/auth/microsoft_graph_auth", method: :post, class: "nav-link"
-    %main.container{role: "main"}
+    %main.container.mt-4{role: "main"}
       - if @errors
         - @errors.each do |error|
           .alert.alert-danger{role: "alert"}
