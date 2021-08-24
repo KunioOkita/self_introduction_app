@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      user_self_introduction: 自己紹介
+    attributes:
+      user_self_introduction:
+        birth_place: 出身地
+        hobby: 趣味
+        introduction: ひとこと
