@@ -13,10 +13,7 @@
 #
 # departments
 department_division_map = {
-  "経営企画部" => ["経営企画部"],
-  "業務部" => ["人事担当", "設備担当", "ISMS推進担当", "事務管理担当"],
-  "開発企画部" => ["開発企画部"],
-  "開発部" => ["システムサービスマネージメント", "システムソリューション"]
+  "開発部" => ["〇〇課", "XX課"]
 }
 department_division_map.each do |department_name, divisions|
   department = Department.create(name: department_name)
