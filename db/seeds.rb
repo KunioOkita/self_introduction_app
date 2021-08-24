@@ -41,7 +41,7 @@ end
 # DummyUserData
 #
 provider = "microsoft_graph_auth"
-mail_suffix = "@heartsoft.co.jp"
+mail_suffix = "@example.jp"
 (1..20).each do |n|
   uid = SecureRandom.uuid
   name = format("user%03<number>d", number: n)
