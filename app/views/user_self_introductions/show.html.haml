@@ -21,8 +21,12 @@
         %h6 出身地
         %p.ml-2.card-text= @user_self_introduction.birth_place
         %h6 誕生日
-        %p.ml-2.card-text
-          = "#{@user_self_introduction.birth_month} 月 #{@user_self_introduction.birth_day} 日"
+        - if @user_self_introduction.birth_month.present?
+          %p.ml-2.card-text
+            = "#{@user_self_introduction.birth_month} 月 #{@user_self_introduction.birth_day} 日"
+        - else
+          %p.ml-2.card-text
+            = "未設定"
         %h6 趣味
         %p.ml-2.card-text= @user_self_introduction.hobby
         %h6 ひとこと
