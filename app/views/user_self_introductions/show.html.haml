@@ -3,29 +3,36 @@
 - if @user_self_introduction.created_by?(current_user)
   .mb-3
     = link_to "編集する", edit_user_self_introduction_path(@user_self_introduction), class: "btn btn-info btn-block"
-.row
-  .col-12
-    .card.mb-2
-      %h5.card-header 自己紹介画像
+
+.card.mb-3
+  .row.no-gutter
+    .col-md-6
       - if @user_self_introduction.self_image.attached?
-        = image_tag @user_self_introduction.self_image, class: "d-block mb-3"
+        = image_tag @user_self_introduction.self_image, width: "100%"
       - else
-        .card-body
-          %p.card-text= "画像を設定してください"
-    .card.mb-2
-      %h5.card-header 所属
+        %p.card-text= "画像を設定してください"
+    .col-md-6
       .card-body
+        %h5 所属
         - if @user_self_introduction.user_division
           %p.card-text= @user_self_introduction.user_division.division.name
-    .card.mb-2
-      %h5.card-header 出身地
-      .card-body
+        %h5 メールアドレス
+        %p.card-text= @user_self_introduction.user.mail
+        %h5 出身地
         %p.card-text= @user_self_introduction.birth_place
-    .card.mb-2
-      %h5.card-header 趣味
-      .card-body
+        %h5 趣味
         %p.card-text= @user_self_introduction.hobby
-    .card.mb-2
-      %h5.card-header 自己紹介
-      .card-body
+        %h5 ひとこと
         %p.card-text= @user_self_introduction.introduction
+
+.card.mb-3
+  .card-header プロジェクト経歴
+  .card-body
+    .card-title ああああ
+
+.card.mb-3
+  .card-header スキル
+  .card-body
+    .card-title ああああ
+
+
