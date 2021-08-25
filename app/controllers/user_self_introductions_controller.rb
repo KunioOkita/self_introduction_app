@@ -1,6 +1,8 @@
 # coding: utf-8
 
 class UserSelfIntroductionsController < ApplicationController
+  skip_before_action :authenticate, only: [:show]
+
   def show
     @user_self_introduction = UserSelfIntroduction.find(params[:id])
   end
