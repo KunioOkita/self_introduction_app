@@ -10,3 +10,9 @@ docker-compose up -d
 ```
 
 [How to use this image]:https://hub.docker.com/_/postgres
+
+### library
+
+- gcc
+- g++
+- libpg
