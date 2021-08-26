@@ -21,6 +21,16 @@ docker-compose up -d
 sudo apt-get install gcc g++ make libpq-dev
 ```
 
+### Node.js use nvm
+
+```bash
+$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+$ source ~/.bashrc 
+$ nvm install --lts
+$ npm install --global yarn
+$ yarn add webpack webpack-cli
+```
+
 ### ruby
 
 ```bash
@@ -45,6 +55,7 @@ $ gem install rails
 $ git checkout https://github.com/KunioOkita/self_introduction_app.git
 $ cd self_introduction_app
 $ bundle install
+$ bin/rails webpacker:install
 $ bin/rails db:create
 $ bin/rails db:migrate
 # for debug
