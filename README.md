@@ -3,6 +3,12 @@
 
 ## installation
 
+### library for Debian
+
+```
+sudo apt-get install git gcc g++ make libpq-dev curl bzip2 libssl-dev libreadline-dev zlib1g-dev
+```
+
 ### PostgreSQL on docker
 
 ```
@@ -11,16 +17,6 @@ docker-compose up -d
 
 [How to use this image]:https://hub.docker.com/_/postgres
 
-### library for Debian
-
-- gcc
-- g++
-- libpg
-- make
-```
-sudo apt-get install gcc g++ make libpq-dev
-```
-
 ### Node.js use nvm
 
 ```bash
@@ -28,7 +24,6 @@ $ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh |
 $ source ~/.bashrc 
 $ nvm install --lts
 $ npm install --global yarn
-$ yarn add webpack webpack-cli
 ```
 
 ### ruby
@@ -52,8 +47,9 @@ $ gem install rails
 ### application
 
 ```bash
-$ git checkout https://github.com/KunioOkita/self_introduction_app.git
+$ git clone https://github.com/KunioOkita/self_introduction_app.git
 $ cd self_introduction_app
+$ yarn add webpack webpack-cli
 $ bundle install
 $ bin/rails webpacker:install
 $ bin/rails db:create
