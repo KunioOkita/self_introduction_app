@@ -1,7 +1,7 @@
 # self_introduction_app
 自己紹介Webアプリ
 
-## installation
+## installation for development
 
 ### library for Debian
 
@@ -56,4 +56,50 @@ $ bin/rails db:create
 $ bin/rails db:migrate
 # for debug
 $ rake db:seed
+```
+
+## Deploy to GAE 
+
+### 事前に確認しておくこと
+
+- cloud-sqlで作成したDB名, ユーザ名, パスワード, 接続情報
+- xxxxxxxx@cloudbuild.gserviceaccount.com のサービスアカウントの権限
+- AD
+
+### サービスアカウントへの権限付与
+
+```bash
+gcloud projects add-iam-policy-binding <Project ID> \
+--member=serviceAccount:xxxxxxxxxxxx@cloudbuild.gserviceaccount.com \
+--role=roles/editor
+```
+
+### credentials の設定
+
+```bash
+EDITOR="vi" bin/rails credentials:edit
+```
+
+以下の内容を追記
+
+```yml
+db:
+  database: <DB Name>※
+  username: <User Name>※
+  userpass: <User Pass>※
+  host: <Connect>※
+```
+※環境に応じて置き換える
+※Connectは "/cloudsql/<接続名>"
+
+### gae deploy
+
+```bash
+gcloud app deploy
+```
+
+### db migrate
+
+```bash
+bundle exec rake appengine:exec -- bundle exec rake db:migrate
 ```
