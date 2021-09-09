@@ -9,8 +9,10 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh
     && export NVM_DIR="$HOME/.nvm" \
     && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
     && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" \
-    && nvm install v14 \
+    && nvm install v14.17.6 \
     && npm install --global yarn
+ENV PATH $PATH:/root/.nvm/versions/node/v14.17.6/bin
+RUN echo $PATH
 
 RUN gem install bundler
 
@@ -21,9 +23,8 @@ COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install \
     && bundle exec rails webpacker:install
-
+ENV RAILS_SERVE_STATIC_FILES true
 COPY . /app
-RUN bundle exec rails assets:precompile RAILS_ENV=production
 
 EXPOSE 8080
 
