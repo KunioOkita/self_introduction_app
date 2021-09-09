@@ -20,10 +20,10 @@ WORKDIR /app
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install \
-    && bundle exec rails webpacker:install \
-    && bundle exec rails assets:precompile RAILS_ENV=production
+    && bundle exec rails webpacker:install
 
 COPY . /app
+RUN bundle exec rails assets:precompile RAILS_ENV=production
 
 EXPOSE 8080
 
