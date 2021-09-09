@@ -1,7 +1,13 @@
 # self_introduction_app
 自己紹介Webアプリ
 
-## installation
+## installation for development
+
+### library for Debian
+
+```
+sudo apt-get install git gcc g++ make libpq-dev curl bzip2 libssl-dev libreadline-dev zlib1g-dev
+```
 
 ### PostgreSQL on docker
 
@@ -11,16 +17,6 @@ docker-compose up -d
 
 [How to use this image]:https://hub.docker.com/_/postgres
 
-### library for Debian
-
-- gcc
-- g++
-- libpg
-- make
-```
-sudo apt-get install gcc g++ make libpq-dev
-```
-
 ### Node.js use nvm
 
 ```bash
@@ -28,7 +24,6 @@ $ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh |
 $ source ~/.bashrc 
 $ nvm install --lts
 $ npm install --global yarn
-$ yarn add webpack webpack-cli
 ```
 
 ### ruby
@@ -52,12 +47,59 @@ $ gem install rails
 ### application
 
 ```bash
-$ git checkout https://github.com/KunioOkita/self_introduction_app.git
+$ git clone https://github.com/KunioOkita/self_introduction_app.git
 $ cd self_introduction_app
+$ yarn add webpack webpack-cli
 $ bundle install
 $ bin/rails webpacker:install
 $ bin/rails db:create
 $ bin/rails db:migrate
 # for debug
 $ rake db:seed
+```
+
+## Deploy to GAE 
+
+### 事前に確認しておくこと
+
+- cloud-sqlで作成したDB名, ユーザ名, パスワード, 接続情報
+- xxxxxxxx@cloudbuild.gserviceaccount.com のサービスアカウントの権限
+- AD
+
+### サービスアカウントへの権限付与
+
+```bash
+gcloud projects add-iam-policy-binding <Project ID> \
+--member=serviceAccount:xxxxxxxxxxxx@cloudbuild.gserviceaccount.com \
+--role=roles/editor
+```
+
+### credentials の設定
+
+```bash
+EDITOR="vi" bin/rails credentials:edit
+```
+
+以下の内容を追記
+
+```yml
+db:
+  database: <DB Name>※
+  username: <User Name>※
+  userpass: <User Pass>※
+  host: <Connect>※
+```
+※環境に応じて置き換える
+※Connectは "/cloudsql/<接続名>"
+
+### gae deploy
+
+```bash
+gcloud app deploy
+```
+
+### db migrate
+
+```bash
+bundle exec rake appengine:exec -- bundle exec rake db:migrate
 ```
