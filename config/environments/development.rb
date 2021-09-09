@@ -1,3 +1,4 @@
+# coding: utf-8
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -68,4 +69,11 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # gcp設定
+  config.google_cloud.use_logging = false
+  config.google_cloud.use_debugger = false
+  config.google_cloud.use_error_reporting = false
+  config.google_cloud.use_trace = false
+
 end

@@ -1,0 +1,15 @@
+entrypoint: bundle exec rackup --port $PORT
+env: flex
+service: self-introduction-app
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
+
+beta_settings:
+  cloud_sql_instances: neural-cable-159105:asia-northeast1:self-introduction-db
+
+env_variables:
+  RAILS_ENV: production
