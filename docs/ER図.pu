@@ -25,6 +25,8 @@ entity "user_self_introductions" as user_self_introductions {
     --
     # user_id [FK]
     birth_place
+    birth_month
+    birth_day
     hobby
     introduction
     created_at
