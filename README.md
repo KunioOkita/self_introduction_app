@@ -103,3 +103,38 @@ gcloud app deploy
 ```bash
 bundle exec rake appengine:exec -- bundle exec rake db:migrate
 ```
+
+## Deploy GCE
+
+### posrgres
+
+```bash
+docker-compose -f docker-compose.yml.postgres up -d
+```
+
+### enviroment
+
+環境に併せて修正
+
+```bash
+# Azure Oauth
+export AZURE_APP_ID=xx
+export AZURE_APP_SECRET=xx
+export AZURE_SCOPES="openid profile email offline_access user.read mailboxsettings.read calendars.readwrite"
+# Google Cloud Storage
+export GCS_PROJECT=xx
+export GCS_BUCKET=xx
+# Database
+export RAILS_DATABASE_NAME=xx
+export RAILS_DATABASE_USERNAME=xx
+export RAILS_DATABASE_USERPASSWORD=xx
+export RAILS_DATABASE_HOST=xx
+export RAILS_ENV=production
+```
+
+### DB
+
+```bash
+bin/rails db:create
+bin/rails db:migrate
+```
