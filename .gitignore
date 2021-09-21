@@ -77,3 +77,6 @@ yarn-debug.log*
 
 # Ignore secrets.
 config/oauth_environment_variables.rb
+
+# Ignore envfiles
+.envrc
