@@ -19,7 +19,7 @@ test:
 
 production:
   <<: *default
-  database: <%= Rails.application.credentials.db[:database] %>
-  username: <%= Rails.application.credentials.db[:username] %>
-  password: <%= Rails.application.credentials.db[:userpass] %>
-  host:  <%= Rails.application.credentials.db[:host] %>
+  database: <%= ENV['RAILS_DATABASE_NAME'] || Rails.application.credentials.db[:database] %>
+  username: <%= ENV['RAILS_DATABASE_USERNAME'] || Rails.application.credentials.db[:username] %>
+  password: <%= ENV['RAILS_DATABASE_USERPASSWORD'] || Rails.application.credentials.db[:userpass] %>
+  host:  <%= ENV['RAILS_DATABASE_HOST'] || Rails.application.credentials.db[:host] %>

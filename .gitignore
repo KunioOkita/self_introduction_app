@@ -77,6 +77,8 @@ yarn-debug.log*
 
 # Ignore secrets.
 config/oauth_environment_variables.rb
-
 # Ignore envfiles
 .envrc
+# service account key
+config/gcs-service-account.json
+
