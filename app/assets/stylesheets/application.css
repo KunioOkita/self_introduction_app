@@ -15,7 +15,7 @@
  */
 
 body {
-  padding-top: 4.5rem;
+  padding-top: 1.0rem;
 }
 
 .alert-pre {
@@ -35,4 +35,61 @@ body {
 
 .profile-photo {
   width: 32px;
+}
+
+ul,li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#accordion_menu > li {
+  border: #454545 1px solid;
+  margin-bottom: -1px;
+}
+#accordion_menu a{
+  color: #c7c7c7;
+}
+#accordion_menu a[data-toggle="collapse"]{
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  position: relative;
+}
+#accordion_menu a[data-toggle="collapse"]:hover{
+    background-color: #4a4a4a;
+    color: #fff
+}
+#accordion_menu a[data-toggle="collapse"]::after{
+  content:"";
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-top: #666 1px solid;
+  border-right: #666 1px solid;
+  position: absolute;
+  right: 15px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+#accordion_menu a[aria-expanded=false]::after{
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  transition-duration: 0.3s;
+}
+#accordion_menu a[aria-expanded=true]::after{
+  -webkit-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  transform: rotate(135deg);
+  transition-duration: 0.3s;
+}
+[id^="menu"] li{
+  padding: 10px 10px 10px 20px;
+}
+
+[id^="menu"] li:hover,
+[id^="menu"] li:hover a{
+    background-color: #4a4a4a;
+    color: #fff
 }
