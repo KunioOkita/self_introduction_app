@@ -3,6 +3,7 @@ class UserSelfIntroduction < ApplicationRecord
   has_one :user_division
   has_one :division, through: :user_division
   belongs_to :user
+  has_rich_text :introduction
 
   attr_accessor :remove_self_image
 

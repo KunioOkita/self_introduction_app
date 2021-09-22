@@ -19,28 +19,34 @@
         %h6 メールアドレス
         %p.ml-2.card-text= @user_self_introduction.user.mail
         %h6 出身地
-        %p.ml-2.card-text= @user_self_introduction.birth_place
+        %p.ml-2.card-text
+          - if @user_self_introduction.birth_place.empty?
+            %i.fa.fa-map-marked-alt
+          - else
+            = @user_self_introduction.birth_place
         %h6 誕生日
         - if @user_self_introduction.birth_month.present?
           %p.ml-2.card-text
             = "#{@user_self_introduction.birth_month} 月 #{@user_self_introduction.birth_day} 日"
         - else
           %p.ml-2.card-text
-            = "未設定"
+            %i.fa.fa-birthday-cake
         %h6 趣味
         %p.ml-2.card-text= @user_self_introduction.hobby
-        %h6 ひとこと
-        %p.ml-2.card-text
-          = safe_join(@user_self_introduction.introduction.split("\n"), tag(:br))
 
 .card.mb-3
-  .card-header プロジェクト経歴
+  .card-header どんなひと？
   .card-body
-    .card-title ああああ
+    .card-text
+      - unless @user_self_introduction.introduction.empty?
+        = @user_self_introduction.introduction
 
 .card.mb-3
   .card-header スキル
   .card-body
     .card-title ああああ
 
-
+.card.mb-3
+  .card-header プロジェクト経歴
+  .card-body
+    .card-title ああああ
