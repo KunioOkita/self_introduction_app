@@ -21,3 +21,6 @@ Turbolinks.start()
 ActiveStorage.start()
 
 // import "./sidebar"
+
+require("trix")
+require("@rails/actiontext")
