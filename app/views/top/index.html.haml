@@ -1,9 +1,11 @@
+.container.text-center.mb-4
+  %h1 Self Introdution List
 .row
   - @user_self_introductions.each do |user_self_introduction|
     .col-sm-4
       .card.mb-4
         - if user_self_introduction.self_image.attached?
-          = image_tag user_self_introduction.self_image, class: "d-block"
+          = image_tag user_self_introduction.self_image.variant(resize_to_fit:[400, 400]), class: "d-block"
         - else
           %svg.bd-placeholder-img.card-img-top{"aria-label" => "Placeholder: Image cap", :focusable => "false", :height => "180", :preserveaspectratio => "xMidYMid slice", :role => "img", :width => "100%", :xmlns => "http://www.w3.org/2000/svg"}
             %title Placeholder
@@ -13,4 +15,4 @@
           .card-title
             = link_to(user_self_introduction) do
               = user_self_introduction.user.name
-          .card-text= user_self_introduction.introduction
+          .card-text
