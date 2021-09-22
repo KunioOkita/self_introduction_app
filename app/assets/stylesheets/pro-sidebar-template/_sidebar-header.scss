@@ -4,6 +4,10 @@
         padding: 20px;
         overflow: hidden;
 
+        ul, li {
+            list-style: none;
+        }
+
         .user-pic {
             width: 60px;
             padding: 2px;
