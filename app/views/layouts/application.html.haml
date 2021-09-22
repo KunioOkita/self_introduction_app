@@ -11,44 +11,77 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
-      .container
-        = link_to "Self Introduction", root_path, class: "navbar-brand"
-        %button.navbar-toggler{"aria-controls" => "navbarCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarCollapse", "data-toggle" => "collapse", type: "button"}
-          %span.navbar-toggler-icon
-        = link_to "マスタデータ管理", master_data_index_path, class: "navbar-brand"
-        %button.navbar-toggler{"aria-controls" => "navbarCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarCollapse", "data-toggle" => "collapse", type: "button"}
-          %span.navbar-toggler-icon
-        #navbarCollapse.collapse.navbar-collapse
-          %ul.navbar-nav.mr-auto
-          %ul.navbar-nav.justify-content-end
+    .page-wrapper.default-theme.sidebar-bg.bg1.toggled.pinned
+      %nav#sidebar.sidebar-wrapper
+        .sidebar-content
+          / sidebar-brand
+          .sidebar-item.sidebar-brand
+            = link_to "SELF-INTRODUCTION", root_path
+          / sidebar-header
+          .sidebar-item.sidebar-header.d-flex.flex-nowrap
             - if logged_in?
-              %li.nav-item.dropdown
-                %a.nav-link.avatar-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
-                  - if @user_avatar
-                    %img{src: "<haml_loud"}/
-                    @user_avatar  class="rounded-circle align-self-center mr-2 profile-photo"&gt;
-                  - else
-                    = image_tag "no-profile-photo.png", class: "rounded-circle align-self-center mr-2 profile-photo"
-                .dropdown-menu.dropdown-menu-right
-                  %h5.dropdown-item-text.mb-0= current_user.name
-                  %p.dropdown-item-text.text-muted.mb-0= current_user.mail
-                  - unless current_user.user_self_introduction.present?
-                    = link_to "自己紹介を作る", new_user_self_introduction_path, class: "dropdown-item", method: :get
-                  -else
-                    = link_to(current_user.user_self_introduction, class: "dropdown-item") do
-                      自己紹介を確認する
-                  .dropdown-divider
-                  = link_to "Sign Out", {:controller => :auth, :action => :signout}, :class => "dropdown-item"
+              .user-pic
+                - if @user_avatar
+                  %img{src: "<haml_loud"}/
+                  @user_avatar  class="rounded-circle align-self-center mr-2 profile-photo"&gt;
+                - else
+                  = image_tag "no-profile-photo.png", class: "align-self-center mr-2 profile-photo"
+              .user-info
+                %span.user-name
+                  = current_user.name
+                %span.text-muted.small
+                  = current_user.mail
+                - unless current_user.user_self_introduction.present?
+                  = link_to "自己紹介を作る", new_user_self_introduction_path
+                -else
+                  = link_to(current_user.user_self_introduction) do
+                    自己紹介を確認する
+                %span.text-muted
+                  = link_to "Sign Out", {:controller => :auth, :action => :signout}
             - else
               %li.nav-item
                 = link_to "Sign In", "/auth/microsoft_graph_auth", method: :post, class: "nav-link"
-    %main.container.mt-4{role: "main"}
-      - if @errors
-        - @errors.each do |error|
-          .alert.alert-danger{role: "alert"}
-            %p.mb-3= error[:message]
-            - if error[:debug]
-              %pre.alert-pre.border.bg-light.p-2
-                %code= error[:debug]
-      = yield
+          / sidebar-search
+          .sidebar-item.sidebar-search
+            %div
+              .input-group
+                %input.form-control.search-menu{:placeholder => "Search...", :type => "text"}/
+                .input-group-append
+                  %span.input-group-text
+                    %i.fa.fa-search{"aria-hidden" => "true"}
+          / sidebar-menu
+          .sidebar-item.sidebar-menu
+            %ul
+              %li.header-menu
+                %span General
+              %li.sidebar-dropdown
+                %a{:href => "#"}
+                  %i.fa.fa-tachometer-alt
+                  %span.menu-text MasterData
+                .sidebar-submenu
+                  %ul
+                    %li
+                      %a{:href => "#"} 部管理
+                    %li
+                      %a{:href => "#"} 課管理
+                    %li
+                      %a{:href => "#"} プロジェクト管理
+                    %li
+                      %a{:href => "#"} スキル分類管理
+                    %li
+                      %a{:href => "#"} スキル管理
+
+      %main.page-content
+        - if @errors
+          - @errors.each do |error|
+            .alert.alert-danger{role: "alert"}
+              %p.mb-3= error[:message]
+              - if error[:debug]
+                %pre.alert-pre.border.bg-light.p-2
+                  %code= error[:debug]
+
+
+        = yield
+
+
+    = javascript_pack_tag 'sidebar', 'data-turbolinks-track': 'reload'
