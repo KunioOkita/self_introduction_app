@@ -41,7 +41,7 @@ skill_categories = {
     Dart
     FORTRAN
     Go
-    Google Apps Script
+    Google\ Apps\ Script
     Groovy
     Haskell
     Java
@@ -64,14 +64,14 @@ skill_categories = {
     Tex
     TypeScript
     VBScript
-    Visual Basic
+    Visual\ Basic
     XSLT
     zsh
   ),
   "アプリケーションフレームワーク" => %w(
     ASP.NET
     Grails
-    Apache Struts
+    Apache\ Struts
     GWT
     Spring
     Angular
@@ -88,7 +88,7 @@ skill_categories = {
     Zend
     Django
     Flask
-    Ruby on Rails
+    Ruby\ on\ Rails
     Sinatra
   ),
   "データベース" => %w(
@@ -97,8 +97,8 @@ skill_categories = {
     Oracle
     SQLite
     MongoDB
-    SQL Server
-    Google Data Store
+    SQL\ Server
+    Google\ Data\ Store
   ),
   "OS" => %w(
     Linux
