@@ -42,4 +42,20 @@
           = f.collection_select :division_id, Division.all, :id, :name, {prompt: true, selected: @user_self_introduction.user_division.division_id}, {class: "form-control"}
         - else
           = f.collection_select :division_id, Division.all, :id, :name, {prompt: true}, {class: "form-control"}
-      = f.submit class: "btn btn-primary"
+      = f.submit class: "btn btn-primary", 'data-disable-with' => false
+
+.card.mb-2
+  %h5.card-header スキル編集
+  .card-body
+    = form_tag(user_skill_path, method: :put, class: "form-horizontail") do
+      .form-group
+        - @skills_map.each do |skills|
+          .card-title
+            #{skills[0]}
+          .card-text
+            - skills[1].each do |skill|
+              .form-check.form-inline
+                = check_box_tag "user_skills[]", skill.id, false, {class: "form-check-input checkbox-inline"}
+                = label_tag "user_skills[]", skill.name, {class: "form-check-label"}
+        .card-body
+          = submit_tag "Save", {class: "btn btn-primary", data: {disable_with: false}}

@@ -22,6 +22,16 @@ class UserSelfIntroductionsController < ApplicationController
 
   def edit
     @user_self_introduction = UserSelfIntroduction.find(params[:id])
+    @skills = Skill.order(:skill_category_id).order(:id).preload(:skill_category).all
+    @skills_map = {}
+    @skills.each do |skill|
+      @skills_map[skill.skill_category.name] = [] unless @skills_map.key?(skill.skill_category.name)
+      @skills_map[skill.skill_category.name].append(skill)
+    end
+
+    @skills_map.each do |skills|
+      pp skills[0]
+    end
   end
 
   def update

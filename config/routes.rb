@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :user_self_introductions, only: %i[new create show edit update]
 
   resources :user_divisions, only: %i[update destory]
+  resources :user_skills, only: %i[update destory]
 
   root "top#index"
   get "auth/signout"
