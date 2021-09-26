@@ -55,7 +55,10 @@
           .card-text
             - skills[1].each do |skill|
               .form-check.form-inline
-                = check_box_tag "user_skills[]", skill.id, false, {class: "form-check-input checkbox-inline"}
+                - if @current_user_skill_ids.include?(skill.id)
+                  = check_box_tag "user_skills[]", skill.id, true, {class: "form-check-input checkbox-inline"}
+                - else
+                  = check_box_tag "user_skills[]", skill.id, false, {class: "form-check-input checkbox-inline"}
                 = label_tag "user_skills[]", skill.name, {class: "form-check-label"}
         .card-body
           = submit_tag "Save", {class: "btn btn-primary", data: {disable_with: false}}

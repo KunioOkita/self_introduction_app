@@ -29,9 +29,8 @@ class UserSelfIntroductionsController < ApplicationController
       @skills_map[skill.skill_category.name].append(skill)
     end
 
-    @skills_map.each do |skills|
-      pp skills[0]
-    end
+    @current_user_skill_ids = @user_self_introduction.skills.map(&:id)
+    pp @current_user_skill_ids
   end
 
   def update

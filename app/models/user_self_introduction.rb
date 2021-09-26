@@ -2,8 +2,8 @@ class UserSelfIntroduction < ApplicationRecord
   has_one_attached :self_image
   has_one :user_division
   has_one :division, through: :user_division
-  has_many :user_skill
-  has_many :skill, through: :user_skill
+  has_many :user_skills
+  has_many :skills, through: :user_skills
   belongs_to :user
   has_rich_text :introduction
 
