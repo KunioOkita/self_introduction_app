@@ -3,7 +3,7 @@ class SkillsController < ApplicationController
 
   # GET /skills or /skills.json
   def index
-    @skills = Skill.all
+    @skills = Skill.preload(:skill_category).all
   end
 
   # GET /skills/1 or /skills/1.json
