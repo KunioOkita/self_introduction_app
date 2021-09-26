@@ -44,7 +44,10 @@
 .card.mb-3
   .card-header スキル
   .card-body
-    .card-title ああああ
+    .card-text
+      .row.m-1
+        - @user_self_introduction.skills.each do |skill|
+          %div{class: "card p-2 mr-2 skill_card_#{skill.skill_category_id}"} #{skill.name}
 
 .card.mb-3
   .card-header プロジェクト経歴

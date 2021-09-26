@@ -3,11 +3,14 @@
 class UserSkillsController < ApplicationController
   def update
     pp user_skill_params
-    # 値が設定されていない場合は何もしない
-    return unless user_skill_params.has_key?(:user_skills)
-
     # Delete Insert を実行
     current_user_skills = UserSkill.where(user_self_introduction_id: user_skill_params[:id])
+
+    # 値が設定されていない場合はなにもチェックされていないので、すべて削除する
+    unless user_skill_params.has_key?(:user_skills)
+      current_user_skills.delete_all
+      return
+    end
 
     pp current_user_skills
 

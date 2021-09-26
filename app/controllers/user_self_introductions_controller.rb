@@ -4,7 +4,7 @@ class UserSelfIntroductionsController < ApplicationController
   skip_before_action :authenticate, only: [:show]
 
   def show
-    @user_self_introduction = UserSelfIntroduction.find(params[:id])
+    @user_self_introduction = UserSelfIntroduction.preload(:skills).preload(skills: :skill_category).find(params[:id])
   end
 
   def new
@@ -21,7 +21,7 @@ class UserSelfIntroductionsController < ApplicationController
   end
 
   def edit
-    @user_self_introduction = UserSelfIntroduction.find(params[:id])
+    @user_self_introduction = UserSelfIntroduction.preload(:skills).find(params[:id])
     @skills = Skill.order(:skill_category_id).order(:id).preload(:skill_category).all
     @skills_map = {}
     @skills.each do |skill|
