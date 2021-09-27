@@ -15,4 +15,5 @@
           .card-title
             = link_to(user_self_introduction) do
               = user_self_introduction.user.name
-          .card-text
+          .card-text.small
+            = user_self_introduction.hobby
