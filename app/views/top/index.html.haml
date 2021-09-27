@@ -2,7 +2,7 @@
   %h1 Self Introdution List
 .row
   - @user_self_introductions.each do |user_self_introduction|
-    .col-sm-4
+    .col-sm-4.col-md-3.col-xl-2
       .card.mb-4
         - if user_self_introduction.self_image.attached?
           = image_tag user_self_introduction.self_image.variant(resize_to_fit:[400, 400]), class: "d-block"
