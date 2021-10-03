@@ -33,6 +33,8 @@
             %i.fa.fa-birthday-cake
         %h6 趣味
         %p.ml-2.card-text= @user_self_introduction.hobby
+        %h6 入社日
+        %p.ml-2.card-text= l(@user_self_introduction.joining_date, format: :without_day_of_week)
 
 .card.mb-3
   .card-header どんなひと？

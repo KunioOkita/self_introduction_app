@@ -1,9 +1,17 @@
 ja:
+  date:
+    formats:
+      default: ! '%Y/%m/%d'
+      without_day_of_week: ! '%Y年%-m月%-d日'
+      with_day_of_week: ! '%Y年%-m月%-d日(%a)'
   activerecord:
     models:
       user_self_introduction: 自己紹介
     attributes:
       user_self_introduction:
         birth_place: 出身地
+        birth_month: 誕生月
+        birth_day: 誕生日
         hobby: 趣味
-        introduction: ひとこと
+        joining_date: 入社日
+        introduction: どんなひと

@@ -28,6 +28,9 @@
         = f.label :hobby
         = f.text_field :hobby, class: "form-control"
       .form-group
+        = f.label :joining_date
+        = f.date_field :joining_date, class: "form-control"
+      .form-group
         = f.label :introduction
         = f.rich_text_area :introduction, value: @user_self_introduction.introduction
       = f.submit class: "btn btn-primary"
