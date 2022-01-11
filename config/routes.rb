@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users, only: %i[index show destroy]
   resources :projects
   resources :skills
   resources :skill_categories

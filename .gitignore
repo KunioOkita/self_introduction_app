@@ -82,3 +82,5 @@ config/oauth_environment_variables.rb
 # service account key
 config/gcs-service-account.json
 
+# Ignore Mac OS file.
+.DS_Store

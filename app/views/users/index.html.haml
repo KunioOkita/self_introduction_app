@@ -1,0 +1,21 @@
+%h1 Listing users
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Mail
+      %th UID
+      %th Provider
+      %th Created_at
+      %th
+
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.mail
+        %td= user.uid
+        %td= user.provider
+        %td= user.created_at
+        %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
