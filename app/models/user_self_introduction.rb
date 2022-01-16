@@ -1,4 +1,6 @@
 class UserSelfIntroduction < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   has_one_attached :self_image
   has_one :user_division, dependent: :destroy
   has_one :division, through: :user_division
@@ -11,10 +13,13 @@ class UserSelfIntroduction < ApplicationRecord
 
   before_save :remove_self_image_if_user_accept
 
-
   def created_by?(user)
     return false unless user
     user_id == user.id
+  end
+
+  def base_uri
+    user_self_introduction_path(self)
   end
 
   private
