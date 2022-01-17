@@ -75,4 +75,5 @@ gem "activerecord-session_store", "~> 2.0.0"
 gem "rails-i18n", "~> 6.0.0"
 gem "appengine"
 gem "google-cloud-storage", "~> 1.8"
-gem 'slack-notifier'
+gem "slack-notifier"
+gem "whenever", require: false

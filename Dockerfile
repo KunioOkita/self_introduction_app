@@ -15,6 +15,7 @@ RUN bundle install
 ENV RAILS_SERVE_STATIC_FILES true
 
 COPY . /app
+RUN bundle exec whenever --update-crontab
 
 EXPOSE 8080
 
