@@ -15,8 +15,8 @@ namespace :notify_slack do
         channel: "#" + ENV["CHANNEL"]
       )
       url = "#{ENV['APP_BASE_URL']}#{user_self_introduction.base_uri}"
-      body = ":confetti_ball::tada::birthday: [#{user_self_introduction.user.name}](#{url})さん 誕生日おめでとうございます!! :birthday::tada::confetti_ball:"
-      notifier.ping body
+      body = ":confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball: \n今日は [#{user_self_introduction.user.name}](#{url})さん の誕生日です！\nおめでとう:tada: \n:confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball::confetti_ball:"
+      notifier.post icon_emoji: ":birthday:", text: body, username: "Birthday Bot"
     end
   end
 end
