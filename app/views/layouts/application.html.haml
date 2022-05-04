@@ -2,7 +2,7 @@
 %html
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Heartsoft Self Introduction
+    %title Heartsoft Self Introductions
     = csrf_meta_tags
     = csp_meta_tag
     %link{href: "favicon.png", rel: "shortcut icon"}/
@@ -16,7 +16,7 @@
         .sidebar-content
           / sidebar-brand
           .sidebar-item.sidebar-brand
-            = link_to "SELF-INTRODUCTION", root_path
+            = link_to "SELF-INTRODUCTIONS", root_path
           / sidebar-header
           .sidebar-item.sidebar-header.d-flex.flex-nowrap
             - if logged_in?
